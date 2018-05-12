@@ -7,7 +7,7 @@ do
 done
 
 # Luckily git isnt dumb enough to add itself. add regex exemption for git at some point just to be robust!
-git add .\!\(|.\)
+git add \.\!\(\|\.\)
 git add fetch.sh
 
 
