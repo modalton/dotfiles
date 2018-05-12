@@ -162,9 +162,9 @@ egrep '^ *[0-9.]*M' /tmp/list
 egrep '^ *[0-9.]*G' /tmp/list
 rm -rf /tmp/list
 }
+ 
 
-
-#move and go to directory
+#move and go to directory 
 mvg (){
   if [ -d "$2" ];then
     mv $1 $2 && cd $2

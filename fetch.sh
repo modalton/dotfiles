@@ -1,3 +1,5 @@
+#! /bin/bash
+
 #Grab all dotfiles
 
 for i in ".emacs" ".bashrc" ".tern-config"
@@ -6,8 +8,9 @@ do
     cp ~/${i} ./
 done
 
-# Luckily git isnt dumb enough to add itself. add regex exemption for git at some point just to be robust!
-git add \.\!\(\|\.\)
+
+# this is a bash glob and not a git glob
+git add .??*
 git add fetch.sh
 
 

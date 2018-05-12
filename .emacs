@@ -1,4 +1,4 @@
-;; emacs specific. don't need use-package
+;; emacs specific. don't need use-package 
 (setq-default indent-tabs-mode nil) ; spaces on tab
 (setq js-indent-level 2) ; indent level 2 spaces in .js
 (tool-bar-mode -1) ; disable toolbar
