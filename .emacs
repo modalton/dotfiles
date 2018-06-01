@@ -6,9 +6,11 @@
 (menu-bar-mode -1)  ; disable menu bar
 (electric-pair-mode 1) ; electric pair for all buffers
 
-(setq org-agenda-files '("~/.org_files")) ; org files
+(setq org-agenda-files '("~/.org_files"))
 (setq make-backup-files nil) ; stop creating backup~ files
-(setq auto-save-default nil) ; stop creating #autosave# files 
+(setq auto-save-default nil) ; stop creating #autosave# files
+
+(global-prettify-symbols-mode 1) ;; display “lambda” as “λ”
 
 ;; Add remote package archives
 (require 'package)
@@ -100,6 +102,22 @@
       (add-to-list 'company-backends 'company-tern)
       (add-hook 'js2-mode-hook #'tern-mode))
     ))
+
+;;; Slime. gonna need a lisp (go SBCL) installed on cmdline
+(use-package slime
+  :defer t
+  :config
+  (progn
+    (use-package ac-slime :ensure t)
+    (setq inferior-lisp-program "sbcl")
+    (slime-setup)
+    (add-hook 'slime-mode-hook 'set-up-slime-ac)
+    (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
+    (setq slime-protocol-version 'ignore
+          slime-net-coding-system 'utf-8-unix
+          slime-complete-symbol*-fancy t
+          slime-complete-symbol-function 'slime-fuzzy-complete-symbol))
+  :ensure t)
 
 
 (custom-set-variables

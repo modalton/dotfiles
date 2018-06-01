@@ -173,3 +173,7 @@ mvg (){
   fi
 }
 
+#For git prompt in bash line
+GIT_PROMPT_ONLY_IN_REPO=1
+source ~/.bash-git-prompt/gitprompt.sh
+GIT_PROMPT_THEME=Evermeet
