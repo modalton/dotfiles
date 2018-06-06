@@ -10,7 +10,24 @@
 (setq make-backup-files nil) ; stop creating backup~ files
 (setq auto-save-default nil) ; stop creating #autosave# files
 
-(global-prettify-symbols-mode 1) ;; display “lambda” as “λ”
+(global-prettify-symbols-mode 1) ;; display “lambda” as “λ”, etc...
+
+
+;; Rename server buffers to reflect the current network name instead
+;; of SERVER:PORT (e.g., "freenode" instead of "irc.freenode.net:6667").
+;; This is useful when using a bouncer where you have multiple
+;; connections to the same server.
+(setq erc-rename-buffers t)
+
+;; Interpret mIRC-style color commands in IRC chats
+(setq erc-interpret-mirc-color t)
+
+;; Hide messages for lurkers
+(setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
+
+;; Auto join on load
+(setq erc-autojoin-channels-alist '(("freenode.net" "##chat" "#lisp" "#emacs")))
+
 
 ;; Add remote package archives
 (require 'package)
@@ -41,6 +58,8 @@
 (use-package ace-jump-mode
   :bind ("C-:" . ace-window))
 
+(use-package ace-link)
+
 (use-package js2-mode
   :mode "\\.js\\'"
   :interpreter "javascript")
@@ -56,6 +75,17 @@
 (use-package naquadah-theme
   :defer t
   :init (load-theme 'naquadah t))
+
+(use-package erc-hl-nicks
+  :after erc)
+
+(use-package erc-image
+  :after erc)
+
+(use-package org-bullets
+  :ensure t
+  :commands (org-bullets-mode)
+  :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
 (use-package dashboard
     :diminish dashboard-mode
