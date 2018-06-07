@@ -83,7 +83,6 @@
   :after erc)
 
 (use-package org-bullets
-  :ensure t
   :commands (org-bullets-mode)
   :init (add-hook 'org-mode-hook (lambda () (org-bullets-mode 1))))
 
@@ -96,6 +95,12 @@
     (setq dashboard-items '((recents  . 10)
                             (agenda . 5)))
     (dashboard-setup-startup-hook))
+
+(use-package paredit
+  :config
+  (add-hook 'emacs-lisp-mode-hook #'paredit-mode)
+  (add-hook 'lisp-mode-hook #'paredit-mode)
+(add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
 
 
 ;; These are emacs packages for command line tools. So if these 'arent working' make sure
@@ -110,7 +115,6 @@
   (add-hook 'web-mode-hook #'prettier-js-mode))
 
 (use-package xref-js2                   
-  :ensure t
   :after js2-mode
   :init
   (defun add-xref-js2-backend ()
@@ -133,22 +137,21 @@
       (add-hook 'js2-mode-hook #'tern-mode))
     ))
 
-;;; Slime. gonna need a lisp (go SBCL) installed on cmdline
+;;Slime. Gonna need inferior-lisp-program installed and in path
 (use-package slime
   :defer t
+  :commands (slime slime-lisp-mode-hook slime-mode)
   :config
-  (progn
-    (use-package ac-slime :ensure t)
-    (setq inferior-lisp-program "sbcl")
-    (slime-setup)
-    (add-hook 'slime-mode-hook 'set-up-slime-ac)
-    (add-hook 'slime-repl-mode-hook 'set-up-slime-ac)
-    (setq slime-protocol-version 'ignore
-          slime-net-coding-system 'utf-8-unix
-          slime-complete-symbol*-fancy t
-          slime-complete-symbol-function 'slime-fuzzy-complete-symbol))
-  :ensure t)
+  (setq slime-contribs
+        '(slime-fancy slime-asdf slime-quicklisp slime-cl-indent))
 
+  (setq inferior-lisp-program "sbcl"
+        slime-net-coding-system 'utf-8-unix
+        slime-complete-symbol*-fancy t
+        slime-complete-symbol-function 'slime-fuzzy-complete-symbol)
+
+  (slime-setup '(slime-fancy slime-asdf slime-quicklisp))
+  )
 
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
