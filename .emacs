@@ -64,6 +64,8 @@
   :mode "\\.js\\'"
   :interpreter "javascript")
 
+(use-package rjsx-mode)
+
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
