@@ -10,7 +10,7 @@ done
 
 
 # this is a bash glob and not a git glob
-git add .??*
+git add *
 git add fetch.sh
 
 
