@@ -11,14 +11,21 @@
 # bind modifer to windows key
 set $mod Mod4 
 
+#restore background img to last one set
+exec --no-startup-id feh --bg-fill ~/.fehbg
+
 #custom workspace symbols. bindsym use below. see bar{} to not ignore numbers
 set $ws1 "1:一"
 set $ws2 "2:二"
-set $ws3 "3:三 "
-set $ws4 "4:四 "
-set $ws5 "5:五 "
-set $ws6 "6:六 "
-set $ws7 "7:七 "
+set $ws3 "3:三"
+set $ws4 "4:四"
+set $ws5 "5:五"
+set $ws6 "6:六"
+set $ws7 "7:七"
+set $ws8 "8:八"
+set $ws9 "9:九"
+set $ws10 "10:十"
+
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -115,20 +122,6 @@ bindsym $mod+Shift+minus move scratchpad
 # If there are multiple scratchpad windows, this command cycles through them.
 bindsym $mod+minus scratchpad show
 
-# Define names for default workspaces for which we configure key bindings later on.
-# We use variables to avoid repeating the names in multiple places.
-# set $ws1 "1"
-# set $ws2 "2"
-# set $ws3 "3"
-# set $ws4 "4"
-# set $ws5 "5"
-# set $ws6 "6"
-# set $ws7 "7"
-# set $ws8 "8"
-# set $ws9 "9"
-# set $ws10 "10"
-
-
 # switch to workspace
 bindsym $mod+1 workspace $ws1
 bindsym $mod+2 workspace $ws2
@@ -191,7 +184,7 @@ bindsym $mod+r mode "resize"
 # finds out, if available)
 # strip workspace nums to leave us w/ symbols
 bar {
-        status_command i3status
+        status_command i3blocks
         strip_workspace_numbers yes
 }
 
