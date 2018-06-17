@@ -52,6 +52,8 @@
 
 (use-package undo-tree)
 
+(use-package rainbow-mode)
+
 (use-package avy
   :bind (("C-;" . avy-goto-char)))
 
@@ -59,6 +61,8 @@
   :bind ("C-:" . ace-window))
 
 (use-package ace-link)
+
+(use-package fontawesome)
 
 (use-package js2-mode
   :mode "\\.js\\'"
