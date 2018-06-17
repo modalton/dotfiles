@@ -2,7 +2,7 @@
 
 #Grab all dotfiles
 
-for i in ".emacs" ".bashrc" ".tern-config" ".i3/config"
+for i in ".emacs" ".bashrc" ".tern-config" ".i3/config" ".i3blocks.conf" ".cowsay" ".Xresources"
 do
     #copied from top level home directory
     cp ~/${i} ./
