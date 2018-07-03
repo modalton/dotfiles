@@ -36,7 +36,7 @@
 (setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
 
 ;; Auto join on load
-(setq erc-autojoin-channels-alist '(("freenode.net" "##chat" "#lisp" "#emacs" "#elixir-lang")))
+(setq erc-autojoin-channels-alist '(("freenode.net" "##chat" "#lisp" "#emacs" "#elixir-lang" )))
 
 
 ;; Add remote package archives

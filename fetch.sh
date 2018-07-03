@@ -6,11 +6,10 @@ for i in ".emacs" ".bashrc" ".tern-config" ".i3/config" ".i3blocks.conf" ".cowsa
 do
     #copied from top level home directory
     cp ~/${i} ./
+    git add ${i}
 done
 
 
-# this is a bash glob and not a git glob
-git add ./*
 git add fetch.sh
 
 
