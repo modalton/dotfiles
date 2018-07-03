@@ -13,6 +13,16 @@
 (global-prettify-symbols-mode 1) ;; display “lambda” as “λ”, etc...
 
 
+    
+    ;; (define-key c-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
+    ;; (define-key c++-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
+    ;; (global-set-key (kbd "M-RET o") 'srefactor-lisp-one-line)
+    ;; (global-set-key (kbd "M-RET m") 'srefactor-lisp-format-sexp)
+    ;; (global-set-key (kbd "M-RET d") 'srefactor-lisp-format-defun)
+;; (global-set-key (kbd "M-RET b") 'srefactor-lisp-format-buffer)
+
+
+
 ;; Rename server buffers to reflect the current network name instead
 ;; of SERVER:PORT (e.g., "freenode" instead of "irc.freenode.net:6667").
 ;; This is useful when using a bouncer where you have multiple
@@ -26,7 +36,7 @@
 (setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
 
 ;; Auto join on load
-(setq erc-autojoin-channels-alist '(("freenode.net" "##chat" "#lisp" "#emacs")))
+(setq erc-autojoin-channels-alist '(("freenode.net" "##chat" "#lisp" "#emacs" "#elixir-lang")))
 
 
 ;; Add remote package archives
@@ -48,6 +58,15 @@
 ;; Ensures use-package will install if not already (same as :ensure t on all use-package)
 (setq use-package-always-ensure t)
 
+
+(use-package alchemist)
+
+(use-package yasnippet
+  :init
+  (yas-global-mode))
+    
+
+
 (use-package emmet-mode)
 
 (use-package undo-tree)
@@ -57,7 +76,7 @@
 (use-package avy
   :bind (("C-;" . avy-goto-char)))
 
-(use-package ace-jump-mode
+(use-package ace-window
   :bind ("C-:" . ace-window))
 
 (use-package ace-link)
