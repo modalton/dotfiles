@@ -180,3 +180,7 @@ GIT_PROMPT_THEME=Evermeet
 
 #For cowsay files in .cowsay directory
 COWPATH="$HOME/.cowsay"
+
+
+#To be integrated
+# xrandr --output eDP-1 --brightness 0.85

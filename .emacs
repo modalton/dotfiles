@@ -1,4 +1,5 @@
-;; emacs specific. don't need use-package 
+
+;; Local/emacs specific. don't need use-package 
 (setq-default indent-tabs-mode nil) ; spaces on tab
 (setq js-indent-level 2) ; indent level 2 spaces in .js
 (tool-bar-mode -1) ; disable toolbar
@@ -11,16 +12,15 @@
 (setq auto-save-default nil) ; stop creating #autosave# files
 
 (global-prettify-symbols-mode 1) ;; display “lambda” as “λ”, etc...
-
-
+(add-hook
+ 'elixir-mode-hook
+ (lambda ()
+   (mapc (lambda (pair) (push pair prettify-symbols-alist))
+         '(("fn" . "λ"))
+         )))
     
-    ;; (define-key c-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
-    ;; (define-key c++-mode-map (kbd "M-RET") 'srefactor-refactor-at-point)
-    ;; (global-set-key (kbd "M-RET o") 'srefactor-lisp-one-line)
-    ;; (global-set-key (kbd "M-RET m") 'srefactor-lisp-format-sexp)
-    ;; (global-set-key (kbd "M-RET d") 'srefactor-lisp-format-defun)
-;; (global-set-key (kbd "M-RET b") 'srefactor-lisp-format-buffer)
-
+;; Makes quicklisp available to slime
+(load (expand-file-name "~/quicklisp/slime-helper.el"))
 
 
 ;; Rename server buffers to reflect the current network name instead
@@ -61,12 +61,6 @@
 
 (use-package alchemist)
 
-(use-package yasnippet
-  :init
-  (yas-global-mode))
-    
-
-
 (use-package emmet-mode)
 
 (use-package undo-tree)
@@ -77,7 +71,8 @@
   :bind (("C-;" . avy-goto-char)))
 
 (use-package ace-window
-  :bind ("C-:" . ace-window))
+  :bind ("C-:" . ace-window)
+  :config (setq aw-keys '(?a ?s ?d ?f ?g ?h ?j ?k ?l)))
 
 (use-package ace-link)
 
@@ -97,9 +92,13 @@
   :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode)
   )
 
-(use-package naquadah-theme
+(use-package dracula-theme
   :defer t
-  :init (load-theme 'naquadah t))
+  :init (load-theme 'dracula t))
+
+;; (use-package naquadah-theme
+;;   :defer t
+;;   :init (load-theme 'naquadah t))
 
 (use-package erc-hl-nicks
   :after erc)
@@ -127,6 +126,18 @@
   (add-hook 'lisp-mode-hook #'paredit-mode)
 (add-hook 'eval-expression-minibuffer-setup-hook #'paredit-mode))
 
+
+(use-package yasnippet-snippets)
+
+(use-package yasnippet
+  :after yasnippet-snippets
+  :config
+  (add-to-list 'yas-snippet-dirs "~/.emacs.d/snippets")
+  (yas-global-mode)
+  (global-set-key (kbd "M-/") 'company-yasnippet))
+
+(use-package zeal-at-point
+  :bind ("C-c z" . zeal-at-point))
 
 ;; These are emacs packages for command line tools. So if these 'arent working' make sure
 ;;  you have installed relevant tools (preferably globally)
@@ -178,14 +189,21 @@
   (slime-setup '(slime-fancy slime-asdf slime-quicklisp))
   )
 
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(ansi-color-faces-vector
+   [default default default italic underline success warning error])
+ '(ansi-color-names-vector
+   ["#2e3436" "#a40000" "#4e9a06" "#c4a000" "#204a87" "#5c3566" "#729fcf" "#eeeeec"])
  '(package-selected-packages
    (quote
-    (company-tern company xref-js2 use-package undo-tree rainbow-delimiters prettier-js magit emmet-mode dashboard avy ace-jump-mode))))
+    (zeal-at-point yasnippet-snippets dracula-theme company-tern company xref-js2 use-package undo-tree rainbow-delimiters prettier-js magit emmet-mode dashboard avy ace-jump-mode))))
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
