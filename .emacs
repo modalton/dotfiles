@@ -36,7 +36,7 @@
 (setq erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
 
 ;; Auto join on load
-(setq erc-autojoin-channels-alist '(("freenode.net" "##chat" "#lisp" "#emacs" "#elixir-lang" )))
+(setq erc-autojoin-channels-alist '(("freenode.net"  "#lisp"  "#elixir-lang" )))
 
 
 ;; Add remote package archives
@@ -96,9 +96,10 @@
   :defer t
   :init (load-theme 'dracula t))
 
-;; (use-package naquadah-theme
-;;   :defer t
-;;   :init (load-theme 'naquadah t))
+(use-package js2-refactor
+  :ensure t
+  :init   (add-hook 'js2-mode-hook 'js2-refactor-mode)
+  :config (js2r-add-keybindings-with-prefix "C-c ."))
 
 (use-package erc-hl-nicks
   :after erc)

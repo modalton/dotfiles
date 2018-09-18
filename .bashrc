@@ -182,5 +182,9 @@ GIT_PROMPT_THEME=Evermeet
 COWPATH="$HOME/.cowsay"
 
 
-#To be integrated
-# xrandr --output eDP-1 --brightness 0.85
+# Add path to env variable. Needed for AWS executable
+export PATH=~/.local/bin:$PATH
+
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
